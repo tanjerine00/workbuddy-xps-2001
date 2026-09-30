@@ -1,0 +1,24 @@
+{
+  "mcpServers": {
+    "akshare": {
+      "type": "stdio",
+      "command": "C:\\Users\\zyx32\\.workbuddy\\binaries\\python\\envs\\default\\Scripts\\python.exe",
+      "args": [
+        "C:\\Users\\zyx32\\.workbuddy\\finance-mcp-servers\\akshare-mcp\\server.py"
+      ]
+    },
+    "china-news": {
+      "type": "stdio",
+      "command": "C:\\Users\\zyx32\\.workbuddy\\binaries\\python\\envs\\default\\Scripts\\python.exe",
+      "args": [
+        "C:\\Users\\zyx32\\.workbuddy\\finance-mcp-servers\\china-news-mcp\\server.py"
+      ]
+    },
+    "lighthouse-ops": {
+      "type": "streamableHttp",
+      "url": "https://lightai.cloud.tencent.com/workbuddy/mcp",
+      "timeout": 30000,
+      "disabled": false
+    }
+  }
+}

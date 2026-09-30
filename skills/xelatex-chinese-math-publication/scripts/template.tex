@@ -1,0 +1,78 @@
+% !TeX program = xelatex
+% 中文 + 专业数学 + 参考文献 的最小可编译模板（2026-09-15 在本机实测通过）
+% 编译：xelatex -> biber -> xelatex -> xelatex   （或 python build.py template.tex）
+\documentclass[11pt,a4paper]{ctexart}
+
+% ---------- 字体：中文由 ctexart 处理；西文与数学都用 TeX Gyre Termes 一套 ----------
+% 前置条件：miktex packages install tex-gyre tex-gyre-math
+% 若不想装包，把下面两行换成 Cambria / Cambria Math（Windows 自带真 MATH 字体）
+\usepackage{unicode-math}
+\setmainfont{TeX Gyre Termes}
+\setmathfont{TeX Gyre Termes Math}
+
+\usepackage{amsmath}
+\usepackage{booktabs}
+\usepackage{amsthm}
+\usepackage[backend=biber,style=numeric]{biblatex}
+\addbibresource{refs.bib}
+
+% ---------- 中文本地化：默认是英文，漏一个就露出来 ----------
+\renewcommand{\contentsname}{目录}
+\renewcommand{\figurename}{图}
+\renewcommand{\tablename}{表}
+\renewcommand{\proofname}{证明}
+% 参考文献标题：实测 \renewcommand{\refname} 与 \DefineBibliographyStrings
+% **都改不动 biblatex 的标题**，唯一可靠的是显式定义 heading：
+\defbibheading{bibliography}[\refname]{\section*{参考文献}}
+
+% 题注分隔符：中文体例不用半角冒号，改成空格
+\usepackage{caption}
+\captionsetup{labelsep=quad}
+
+\theoremstyle{definition}
+\newtheorem{theorem}{定理}
+
+% 若要求"行尾不悬算符"，打开下面两行（代价：长公式可能溢出）
+% \binoppenalty=10000
+% \relpenalty=10000
+
+\pagestyle{plain}
+
+\begin{document}
+
+\section*{最小模板}
+
+行内根号：$\sqrt{2}$、$\sqrt[3]{2}$、$\sqrt{1+\sqrt{2}}$、$\sqrt{\dfrac{p}{q}}$。
+
+GB/T 3102.11 正斜体：变量 $x$ 斜体；常数 $\symup{\pi}$、$\symup{e}$、$\symup{i}^{2}=-1$ 正体；
+函数名 $\sin$、$\exp$、$\ln$ 正体；算子 $\mathrm{d}f/\mathrm{d}x$ 正体。
+
+$$\sum_{n=1}^{\infty}\frac{1}{n^{2}}=\frac{\symup{\pi}^{2}}{6}
+\qquad
+\lim_{\delta\to0}(1+\delta)^{1/\delta}=\symup{e}$$
+
+\begin{theorem}[示例]
+  不存在正整数 $p$、$q$ 使 $(p/q)^{2}=2$。
+\end{theorem}
+\begin{proof}
+  设 $p^{2}=2q^{2}$ 且 $\gcd(p,q)=1$，推出 $p$、$q$ 同为偶数，与互质矛盾。
+\end{proof}
+
+\begin{table}[htbp]
+  \centering
+  \begin{tabular}{lrr}
+    \toprule
+    角差 $\delta$ & 深度 $h$ & 折算 \\
+    \midrule
+    $2'$  & $1.72$ 公里  & --- \\
+    $2''$ & $103.1$ 公里 & --- \\
+    \bottomrule
+  \end{tabular}
+  \caption{数值区间用 en dash：约公元前 1800--前 1600 年}
+\end{table}
+
+引用一处文献\cite{example2026}。
+
+\printbibliography
+
+\end{document}

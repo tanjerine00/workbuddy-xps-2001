@@ -1,0 +1,9 @@
+# 仅备份 WorkBuddy 工作环境资产；其余一切忽略，防止误传插件/运行时/二进制缓存
+/*
+!.gitignore
+!skills/
+!mcp.json
+!settings.json
+!workbuddy.db
+!experts/
+!memory/
